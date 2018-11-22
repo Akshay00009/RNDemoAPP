@@ -6,14 +6,22 @@ const { height } = Dimensions.get('window');
 
 export class SignUp extends Component {
 
-    state = { email: '', password: '' };
+    state = { email: '', showPassword: true , userName:'',password:'' };
     onButtonPress() {
-        this.validate(this.state.email)
+        this.validate(this.state.userName,this.state.email,this.state.password)
     }
-    validate = (text) => {
+    validate = (userName,email,password) => {
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (reg.test(text) === false) {
-            alert("Invalid email")
+        if (userName == '') {
+            alert("Please enter username")
+        } else if(email == '') {
+            alert("Please enter email")
+        } else if (reg.test(email) == false) {
+            alert("Please enter valid email address")
+        } else if (password === '') {
+            alert("Please enter password")
+        } else if(password.length < 6) {
+            alert('password should greater than 6')
         }
     }
     render() {
@@ -32,7 +40,7 @@ export class SignUp extends Component {
             <View style={{flex:1.5,alignItems:"center", justifyContent:"flex-end"}}>
             <Image
                 style={styles.imageTop}
-                source={require('../assets/img.png')} />
+                source={require('../../assets/img.png')} />
             </View>
                 
         )
@@ -42,9 +50,11 @@ export class SignUp extends Component {
             <View style={{flex:2, paddingHorizontal: 20, alignItems: 'center', justifyContent: 'center' }}>
                 <View style={styles.sectionStyle}>
                     <Image
-                        source={require('../assets/ic_user.png')}
+                        source={require('../../assets/ic_user.png')}
                         style={styles.iconStyle} />
                     <TextInput
+                        value = {this.state.userName}
+                        onChangeText={userName => this.setState({ userName })}
                         returnKeyType='next'
                         style={styles.textInput}
                         placeholder="User Name"
@@ -57,7 +67,7 @@ export class SignUp extends Component {
                 </View>
                 <View style={styles.sectionStyle}>
                     <Image
-                        source={require('../assets/ic_email.png')}
+                        source={require('../../assets/ic_email.png')}
                         style={styles.iconStyle} />
                     <TextInput
                         onChangeText={email => this.setState({ email })}
@@ -74,24 +84,28 @@ export class SignUp extends Component {
 
                 <View style={styles.sectionStyle}>
                     <Image
-                        source={require('../assets/ic_password.png')}
+                        source={require('../../assets/ic_password.png')}
                         style={styles.iconStyle} />
 
                     <TextInput
+                        onChangeText={password => this.setState({ password })}
                         returnKeyType='done'
                         style={styles.textInput}
                         placeholder="Password"
                         placeholderTextColor="#464555"
                         underlineColorAndroid="transparent"
-                        secureTextEntry={true}
+                        secureTextEntry={this.state.showPassword}
                         ref={(input) => { this.thirdTextInput = input; }}
                     />
-
+                    <TouchableOpacity
+                    onPressIn = {() => this.setState({showPassword : false})}
+                    onPressOut ={() => this.setState({showPassword : true})}
+                    >
                     <Image
-                        source={require('../assets/ic_view.png')}
+                        source={require('../../assets/ic_view.png')}
                         style={styles.iconStyle} />
+                    </TouchableOpacity>
                 </View>
-
                 <TouchableOpacity
                     onPress={(this.onButtonPress.bind(this))}
                     style={styles.buttonContainer}>
@@ -151,8 +165,8 @@ const styles = {
     },
     iconStyle: {
         margin: 5,
-        height: 15,
-        width: 15,
+        height: 18,
+        width: 18,
         resizeMode: 'contain',
     },
     imageTop: {
@@ -175,7 +189,7 @@ const styles = {
         padding: 12,
     },
     textAccount: {
-        fontSize: 14,
+        fontSize: 16,
         color: '#A0A3C0',
     },
     textLoginHere: {
