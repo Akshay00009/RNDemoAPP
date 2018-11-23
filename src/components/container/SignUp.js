@@ -5,7 +5,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 const { height } = Dimensions.get('window');
 
 export class SignUp extends Component {
-
+   
     state = { email: '', showPassword: true , userName:'',password:'' };
     onButtonPress() {
         this.validate(this.state.userName,this.state.email,this.state.password)
@@ -18,13 +18,17 @@ export class SignUp extends Component {
             alert("Please enter email")
         } else if (reg.test(email) == false) {
             alert("Please enter valid email address")
-        } else if (password === '') {
+        } else if (password == '') {
             alert("Please enter password")
         } else if(password.length < 6) {
             alert('password should greater than 6')
+        } else {
+            const { navigate } = this.props.navigation;
+            navigate('Login');
         }
     }
     render() {
+      
         return (
                 <KeyboardAwareScrollView  contentContainerStyle={styles.scrollContainer} style={{flexGrow: 1,}}>
                 <View style={styles.container}>
@@ -129,8 +133,8 @@ export class SignUp extends Component {
     }
     bottomView() {
         return (
-            <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-                <View style={{ flex: 1, flexDirection: 'row' }}>
+            <View style={{flex:1, justifyContent: 'center', alignItems: 'center',}}>
+                <View style={{ flexDirection: 'row'}}>
                     <Text
                         style={styles.textAccount}>
                         Already have an account?
@@ -150,6 +154,7 @@ const styles = {
     container: {
         flex :1,
         margin:1,
+        backgroundColor :"white"
     },
     sectionStyle: {
         flexDirection: 'row',
