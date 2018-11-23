@@ -8,14 +8,15 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import {SignUp} from './src/components/signUp/SignUp'
-// import SignUp  from './src/components/signup'
+import Navigation from './src/actions/Navigation';
+ import {SignUp}  from './src/components/container/SignUp'
 
 export class App extends Component{
   render() {
     return (
-    <SignUp/>
+      <Navigation />
     )
+
   };
 }
 
