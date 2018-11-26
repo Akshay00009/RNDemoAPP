@@ -22,10 +22,7 @@ export class SignUp extends Component {
             alert("Please enter password")
         } else if(password.length < 6) {
             alert('password should greater than 6')
-        } else {
-            const { navigate } = this.props.navigation;
-            navigate('Login');
-        }
+        } 
     }
     render() {
       
@@ -132,6 +129,7 @@ export class SignUp extends Component {
         )
     }
     bottomView() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={{flex:1, justifyContent: 'center', alignItems: 'center',}}>
                 <View style={{ flexDirection: 'row'}}>
@@ -139,13 +137,16 @@ export class SignUp extends Component {
                         style={styles.textAccount}>
                         Already have an account?
                     </Text>
+                    <TouchableOpacity
+                    onPress = {() => {navigate('Login')}}
+                    >
                     <Text
                         style={styles.textLoginHere}>
                         LOGIN HERE
                     </Text>
+                    </TouchableOpacity>
                 </View>
             </View>
-
         )
     }
 }
