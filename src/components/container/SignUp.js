@@ -22,7 +22,10 @@ export class SignUp extends Component {
             alert("Please enter password")
         } else if(password.length < 6) {
             alert('password should greater than 6')
-        } 
+        } else {
+            const { navigate } = this.props.navigation;
+            navigate('Login');
+        }
     }
     render() {
       
