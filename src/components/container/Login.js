@@ -100,7 +100,6 @@ export class Login extends Component {
                     </Text>
                 </View>
             </View>
-
         )
     }
     bottomView() {
