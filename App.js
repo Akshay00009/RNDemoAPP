@@ -14,7 +14,7 @@ import Navigation from './src/actions/Navigation';
 export class App extends Component{
   render() {
     return (
-      <Navigation />
+      <Navigation/>
     )
 
   };
