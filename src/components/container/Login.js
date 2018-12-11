@@ -9,16 +9,19 @@ export class Login extends Component {
         this.validate(this.state.email,this.state.password)
     }
     validate = (email,password) => {
-        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if(email == '') {
-            alert("Please enter email")
-        } else if (reg.test(email) == false) {
-            alert("Please enter valid email address")
-        } else if (password == '') {
-            alert("Please enter password")
-        } else if(password.length < 6) {
-            alert('password should greater than 6')
-        } 
+        // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        // if(email == '') {
+        //     alert("Please enter email")
+        // } else if (reg.test(email) == false) {
+        //     alert("Please enter valid email address")
+        // } else if (password == '') {
+        //     alert("Please enter password")
+        // } else if(password.length < 6) {
+        //     alert('password should greater than 6')
+        // } 
+        let { navigate } = this.props.navigation;
+        navigate('SideMenu');
+
     }
     render() {
       

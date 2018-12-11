@@ -1,12 +1,15 @@
-import { StackNavigator } from 'react-navigation';
+import {createStackNavigator,createAppContainer} from 'react-navigation';
 import {Login} from '../components/container/Login'
 import {SignUp} from '../components/container/SignUp'
-// import {List} from '../components/container/List'
+import {List} from '../components/container/List'
+import {Dimensions} from 'react-native'
+import SideMenu from './SideMenu'
 
-const Navigation = StackNavigator({
+const Navigation = createStackNavigator({
     Login: { screen: Login},
-    SignUp: { screen: SignUp},
-    // List: { screen: List}
+    SideMenu : {screen : SideMenu},
+    List: { screen: List},
+    SignUp: { screen: SignUp}
 
   },
     {
@@ -15,6 +18,10 @@ const Navigation = StackNavigator({
       navigationOptions: {
         gesturesEnabled: false
       }
-    }
+    } 
   )
-  export default Navigation;
+  
+
+  const AppContainer = createAppContainer(Navigation)
+
+  export default AppContainer;

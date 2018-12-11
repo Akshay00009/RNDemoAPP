@@ -8,15 +8,15 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import Navigation from './src/actions/Navigation';
  import {SignUp}  from './src/components/container/SignUp'
+ import {Login} from './src/components/container/Login'
+ import Navigation from './src/actions/Navigation'
 
 export class App extends Component{
   render() {
     return (
       <Navigation/>
     )
-
   };
 }
 

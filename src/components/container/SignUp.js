@@ -27,7 +27,7 @@ export class SignUp extends Component {
         //     navigate('List');
         // }
         const { navigate } = this.props.navigation;
-        navigate('List');
+        navigate('Login');
     }
     render() {
         return (
@@ -133,7 +133,7 @@ export class SignUp extends Component {
         )
     }
     bottomView() {
-        let navigate  = this.props.navigation;
+        const {navigate}  = this.props.navigation;
         return (
             <View style={styles.view5}>
                 <View style={{ flexDirection: 'row'}}>
@@ -142,7 +142,7 @@ export class SignUp extends Component {
                         Already have an account?
                     </Text>
                     <TouchableOpacity
-                    onPress = {() => {navigate('Login')}}
+                      onPress = {() => {navigate('Login')}}
                     >
                     <Text
                         style={styles.textLoginHere}>
