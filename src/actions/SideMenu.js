@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import { createAppContainer, createDrawerNavigator, DrawerItems } from 'react-navigation';
 import { View, Text, Dimensions, Image, SafeAreaView, TouchableOpacity } from 'react-native';
 import { List } from '../components/container/List'
-import { SignUp } from '../components/container/SignUp'
 import { ScrollView } from 'react-native-gesture-handler';
-import { Login } from '../components/container/Login'
 import {Pinterest} from '../components/container/Pinterest';
-import { Form } from 'native-base';
-
+import BarChart from '../components/container/Barchart'
 export default class SideMenu extends Component {
     render() {
         return (
@@ -32,8 +29,9 @@ const CustomDrawerItem = (props) => {
     )
 };
 const Drawernav = createDrawerNavigator({
+    BarChart : {screen : BarChart},
     List: { screen: List },
-    Pinterest :{screen : Pinterest}
+    Pinterest :{screen : Pinterest},
 }, {
         contentComponent: CustomDrawerItem,
         drawerWidth: Dimensions.get('window').width - 120,

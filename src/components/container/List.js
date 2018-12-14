@@ -53,7 +53,6 @@ export class List extends Component {
                                 keyExtractor={(item) => item}
                                 data={this.state.dataSource}
                                  extraData = {this.state}
-                                numColumns = {2}
                                 renderItem={({ item }) => this._renderItem(item)}
                             /> : null
                     }

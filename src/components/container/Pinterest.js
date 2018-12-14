@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Text, View, FlatList, Image } from 'react-native';
 import { Icon } from 'native-base';
 import { RenderView } from '../common/RenderView'
+import { ScrollView } from 'react-native-gesture-handler';
 export class Pinterest extends Component {
-    state = { dataSource: [], searchData: [], show: false};
+    state = { dataSource: [], searchData: [], show: false ,array :[]};
 
     componentDidMount() {
         this.apiCall()
@@ -15,7 +16,8 @@ export class Pinterest extends Component {
             .then((responseJson) => {
                 this.setState({
                     isLoading: false,
-                    dataSource: responseJson.resource_response.data.results
+                    dataSource: responseJson.resource_response.data.results,
+                    array : responseJson.resource_response.data.results.reverse()
                 });
             })
             .catch((error) => {
@@ -31,17 +33,32 @@ export class Pinterest extends Component {
                     <Text style={{ flex: 9, fontSize: 23, marginLeft: 1 }}>Pinterest</Text>
                     <Icon style={{ marginRight: 5 }} type='MaterialIcons' name='search' />
                 </View>
+                <ScrollView style = {{top:20}}>
+
+                <View style = {{flexDirection : 'row'}}>
                 <View style={{ flex: 1, top: 5, marginTop: 25, backgroundColor: 'black' }}>
-                    {                        
-                            <FlatList
-                                keyExtractor = {(item) => item}
-                                data = {this.state.dataSource}
-                                // extraData = {this.state}
-                                numColumns = {2}
-                                renderItem = {({ item }) => this._renderItem(item)}
-                            /> 
+                    {
+                        <FlatList
+                            keyExtractor={(item) => (item)}
+                            data={this.state.dataSource}
+                            // extraData = {this.state}
+                            renderItem={({ item ,index}) => index%2 == 0? this._renderItem(item) : null}
+                        />
                     }
                 </View>
+                <View style={{ flex: 1, top: 5, marginTop: 25, backgroundColor: 'black' }}>
+                    {
+                        <FlatList
+                            keyExtractor={(item) => (item)}
+                            data={this.state.dataSource}
+                            // extraData = {this.state}
+                           // numColumns={2}
+                            renderItem={({ item ,index}) => index%2 != 0? this._renderItem(item) : null}
+                        />
+                    }
+                </View>
+                </View>
+                </ScrollView>
             </View>
         );
 
@@ -49,13 +66,7 @@ export class Pinterest extends Component {
     _renderItem = (item) => {
         debugger;
         return (
-            <View style={{ flex: 1,padding:'1%' }}>
-            <View>
-                <Image style={{ height: item.images["170x"].height,width: item.images["170x"].width,flex: 3, borderRadius : 10 }} source={{ uri: item.images["170x"].url}} />
-            </View>
-        </View>
-
-            // <RenderView height = "200" pimage = {item.object.resource_response.data.results.images["170x"].url} />
+            <RenderView height={item.images["170x"].height} pimage={item.images["170x"].url} />
         )
     }
 };
