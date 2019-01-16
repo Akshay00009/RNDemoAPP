@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Image, TextInput, TouchableOpacity, Text, Button, KeyboardAvoidingView,Dimensions } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 const { height } = Dimensions.get('window');
+import network from "../common/InternetConnectivity";
+
 export class Login extends Component {
 
     state = { email: '',password:'',showPassword: true };
@@ -24,18 +26,22 @@ export class Login extends Component {
 
     }
     render() {
-      
+        let value = network.checkInternet()
+        console.log(value)
         return (
+                value? 
                 <KeyboardAwareScrollView  contentContainerStyle={styles.scrollContainer} style={{flexGrow: 1,}}>
                 <View style={styles.container}>
                     {this.imageView()}
                     {this.mainView()}
                     {this.bottomView()}
                 </View>
-                </KeyboardAwareScrollView>
+                </KeyboardAwareScrollView> : <Text>{value}</Text>
         )
+      
     }
     imageView() {
+
         return (
             <View style={{flex:1.5,alignItems:"center", justifyContent:"flex-end"}}>
             <Image

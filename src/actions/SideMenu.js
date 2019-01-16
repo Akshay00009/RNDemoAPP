@@ -29,9 +29,10 @@ const CustomDrawerItem = (props) => {
     )
 };
 const Drawernav = createDrawerNavigator({
-    BarChart : {screen : BarChart},
     List: { screen: List },
     Pinterest :{screen : Pinterest},
+    BarChart : {screen : BarChart},
+
 }, {
         contentComponent: CustomDrawerItem,
         drawerWidth: Dimensions.get('window').width - 120,

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, ScrollView, View, TextInput, TouchableOpacity, ListView, FlatList, Image, ActivityIndicator } from 'react-native';
 import { Icon } from 'native-base';
 import {RenderView} from '../common/RenderView'
+import {withNavigation} from 'react-navigation'
 export class List extends Component {
     state = { dataSource: [], searchData: [], show: false ,seachText : ''};
 
