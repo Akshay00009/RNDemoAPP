@@ -37,7 +37,7 @@ const CustomDrawerItem = (props) => {
                         { cancelable: false }
                     )
                 }>
-                    <Text>Logout</Text>
+                    <Text style = {{justifyContent:"center",fontWeight:"bold",marginTop:10,marginLeft:16}}>Logout</Text>
                 </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
