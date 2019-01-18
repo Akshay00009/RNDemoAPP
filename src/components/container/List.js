@@ -3,8 +3,19 @@ import { Text, ScrollView, View, TextInput, TouchableOpacity, ListView, FlatList
 import { Icon } from 'native-base';
 import {RenderView} from '../common/RenderView'
 import {withNavigation} from 'react-navigation'
+
 export class List extends Component {
     state = { dataSource: [], searchData: [], show: false ,seachText : ''};
+
+    static navigationOptions = {
+        drawerLabel: 'List',
+        drawerIcon: ({ tintColor }) => (
+          <Image
+            source={require('../../assets/ic_email.png')}
+          />
+        ),
+      };
+    
 
     componentDidMount() {
         this.apiCall()
@@ -38,7 +49,6 @@ export class List extends Component {
     }
     }
     render() {
-        let navigate  = this.props.navigation
         return (
             <View style={{ flex: 1}}>
                 <View style={{ flexDirection: 'row', top: 20, paddingTop: 10, paddingBottom: 10, shadowOpacity: .1, borderBottomWidth: .5, alignItems: 'center' }}>

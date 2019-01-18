@@ -5,6 +5,9 @@ import { List } from '../components/container/List'
 import { ScrollView } from 'react-native-gesture-handler';
 import {Pinterest} from '../components/container/Pinterest';
 import BarChart from '../components/container/Barchart'
+import {withNavigation} from 'react-navigation'
+import SignOut from '../components/container/signOut'
+
 export default class SideMenu extends Component {
     render() {
         return (
@@ -20,10 +23,6 @@ const CustomDrawerItem = (props) => {
             </View>
             <ScrollView>
                 <DrawerItems {...props} />
-                <TouchableOpacity style = {{justifyContent : 'center',padding:9}}
-                >
-                    <Text>Sign Out</Text>
-                </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
     )
@@ -32,6 +31,7 @@ const Drawernav = createDrawerNavigator({
     List: { screen: List },
     Pinterest :{screen : Pinterest},
     BarChart : {screen : BarChart},
+    SignOut : {screen : SignOut}
 
 }, {
         contentComponent: CustomDrawerItem,
@@ -40,7 +40,9 @@ const Drawernav = createDrawerNavigator({
             activeBackgroundColor: 'lightgray',
         },
     });
+
 const AppContainer = createAppContainer(Drawernav)
+
 
 
 

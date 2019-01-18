@@ -4,7 +4,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 const { height } = Dimensions.get('window');
 import network from "../common/InternetConnectivity";
 
-export class Login extends Component {
+export  class Login extends Component {
 
     state = { email: '',password:'',showPassword: true };
     onButtonPress() {
@@ -22,33 +22,28 @@ export class Login extends Component {
         //     alert('password should greater than 6')
         // } 
         let { navigate } = this.props.navigation;
-        navigate('SideMenu');
+        this.props.navigation.replace('Drawernav');
 
     }
     render() {
-        let value = network.checkInternet()
-        console.log(value)
         return (
-                value? 
                 <KeyboardAwareScrollView  contentContainerStyle={styles.scrollContainer} style={{flexGrow: 1,}}>
                 <View style={styles.container}>
                     {this.imageView()}
                     {this.mainView()}
                     {this.bottomView()}
                 </View>
-                </KeyboardAwareScrollView> : <Text>{value}</Text>
+                </KeyboardAwareScrollView> 
         )
       
     }
     imageView() {
-
         return (
             <View style={{flex:1.5,alignItems:"center", justifyContent:"flex-end"}}>
             <Image
                 style={styles.imageTop}
                 source={require('../../assets/img.png')} />
-            </View>
-                
+            </View>  
         )
     }
     mainView() {
